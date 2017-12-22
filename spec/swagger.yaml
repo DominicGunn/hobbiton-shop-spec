@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "Jagex - Shop Microservice",
-    "description": "TODO: Add Description",
+    "title": "Hobbiton - Shop Microservice",
+    "description": "The Hobbiton Shop Microservice used to create and serve packages containing a variety off different products.",
     "license": {
       "name": "MIT",
       "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
@@ -23,12 +23,10 @@
   "paths": {
     "/products": {
       "get": {
-        "description": "",
-        "summary": "[Products] - List Euros",
+        "summary": "Lists products available to the shop microservice.",
         "tags": [
-          "Misc"
+          "Product API"
         ],
-        "operationId": "ProductsGet2",
         "produces": [
           "application/json"
         ],
@@ -36,99 +34,58 @@
           {
             "name": "currencyCode",
             "in": "query",
-            "required": true,
+            "required": false,
             "type": "string",
-            "description": ""
+            "description": "Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately."
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Successful Request"
           }
         },
-        "security": [],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "GET",
-              "uri": "/products?currencyCode=eur"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "[Products] - List Euros",
-            "x-testDescription": ""
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
       }
     },
-    "/products/VqKb4tyj9V6i": {
+    "/products/{productId}": {
       "get": {
-        "description": "",
-        "summary": "[Products] - By Id",
+        "summary": "Product by API",
         "tags": [
-          "Misc"
+          "Product API"
         ],
-        "operationId": "ProductsVqKb4tyj9V6iGet",
         "produces": [
           "application/json"
         ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [],
-        "x-unitTests": [
+        "parameters": [
           {
-            "request": {
-              "method": "GET",
-              "uri": "/products/VqKb4tyj9V6i"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "[Products] - By Id",
-            "x-testDescription": ""
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "currencyCode",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately."
           }
         ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
+        "responses": {
+          "200": {
+            "description": "Successful Request"
+          },
+          "404": {
+            "description": "Product was not found."
+          }
+        },
       }
     },
     "/packages": {
       "get": {
-        "description": "",
-        "summary": "[Packages] - List Euros",
+        "summary": "Lists packages within the Hobbiton Shop Microservice.",
         "tags": [
-          "Misc"
+          "Package API"
         ],
-        "operationId": "PackagesGet2",
         "produces": [
           "application/json"
         ],
@@ -136,129 +93,72 @@
           {
             "name": "currencyCode",
             "in": "query",
-            "required": true,
+            "required": false,
             "type": "string",
-            "description": ""
+            "description": "Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately."
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Successful Request"
           }
         },
-        "security": [],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "GET",
-              "uri": "/packages?currencyCode=eur"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "[Packages] - List Euros",
-            "x-testDescription": ""
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
       },
       "post": {
-        "description": "",
-        "summary": "[Packages] - Create",
+        "summary": "Creates a package within the Hobbiton Shop",
         "tags": [
-          "Misc"
+          "Package API"
         ],
-        "operationId": "PackagesPost",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "currencyCode",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
             "name": "Body",
             "in": "body",
             "required": true,
-            "description": "",
+            "description": "Body of the package being created. Must contain a name, description, and the ids of products within it.",
             "schema": {
               "$ref": "#/definitions/[packages]  createrequest"
             }
           },
           {
+            "name": "currencyCode",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately."
+          },
+          {
             "name": "Content-Type",
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Successful Request"
           }
         },
-        "security": [],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "POST",
-              "uri": "/packages?currencyCode=eur",
-              "headers": {
-                "Content-Type": "application/json"
-              },
-              "body": "{\n\t\"name\": \"Test Package\",\n\t\"description\": \"Test Package Description\",\n\t\"productIds\": [\n\t\t\"VqKb4tyj9V6i\"\n\t]\n}"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "[Packages] - Create",
-            "x-testDescription": ""
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      }
+      },
     },
-    "/packages/1": {
+    "/packages/{packageId}": {
       "get": {
-        "description": "",
-        "summary": "[Packages] - By Id Euros",
+        "summary": "Package by API",
         "tags": [
-          "Misc"
+          "Package API"
         ],
-        "operationId": "Packages1Get2",
         "produces": [
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "packageId",
+            "in": "path",
+            "type": "number",
+            "required": true,
+          },
           {
             "name": "currencyCode",
             "in": "query",
@@ -269,149 +169,83 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Successful Request"
           }
         },
-        "security": [],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "GET",
-              "uri": "/packages/1?currencyCode=eur"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "[Packages] - By Id Euros",
-            "x-testDescription": ""
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
       },
-      "delete": {
-        "description": "",
-        "summary": "[Packages] - Delete",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "Packages1Delete",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "DELETE",
-              "uri": "/packages/1"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "[Packages] - Delete",
-            "x-testDescription": ""
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      }
-    },
-    "/packages/2": {
       "put": {
-        "description": "",
-        "summary": "[Packages] - Update",
+        "summary": "Updates a package within the Hobbiton Shop",
         "tags": [
-          "Misc"
+          "Package API"
         ],
-        "operationId": "Packages2Put",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
+            "name": "packageId",
+            "in": "path",
+            "type": "number",
+            "required": true,
+          },
+          {
             "name": "Body",
             "in": "body",
             "required": true,
-            "description": "",
+            "description": "Body of the package being created. Must contain a name, description, and the ids of products within it.",
             "schema": {
               "$ref": "#/definitions/[packages]  updaterequest"
             }
+          },
+          {
+            "name": "currencyCode",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately."
           },
           {
             "name": "Content-Type",
             "in": "header",
             "required": true,
             "type": "string",
-            "description": ""
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "Successful Request"
+          },
+          "404": {
+            "description": "Package not found."
           }
         },
-        "security": [],
-        "x-unitTests": [
+      },
+      "delete": {
+        "summary": "Delete Package by API",
+        "tags": [
+          "Package API"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
           {
-            "request": {
-              "method": "PUT",
-              "uri": "/packages/2",
-              "headers": {
-                "Content-Type": "application/json"
-              },
-              "body": "{\n\t\"name\": \"Test Package - Update\",\n\t\"description\": \"Test Package Description\",\n\t\"productIds\": [\n\t\t\"VqKb4tyj9V6i\"\n\t]\n}"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "[Packages] - Update",
-            "x-testDescription": ""
+            "name": "packageId",
+            "in": "path",
+            "type": "number",
+            "required": true,
           }
         ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
+        "responses": {
+          "200": {
+            "description": "Successful Request"
+          },
+          "404": {
+            "description": "Package not found."
+          }
+        },  
       }
-    }
+    },
   },
   "definitions": {
     "[packages]  createrequest": {
