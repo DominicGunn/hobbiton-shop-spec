@@ -1,0 +1,494 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Jagex - Shop Microservice",
+    "description": "TODO: Add Description",
+    "license": {
+      "name": "MIT",
+      "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+    }
+  },
+  "host": "192.168.99.100:5000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "description": "",
+        "summary": "[Products] - List Euros",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "ProductsGet2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "currencyCode",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "GET",
+              "uri": "/products?currencyCode=eur"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "[Products] - List Euros",
+            "x-testDescription": ""
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/products/VqKb4tyj9V6i": {
+      "get": {
+        "description": "",
+        "summary": "[Products] - By Id",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "ProductsVqKb4tyj9V6iGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "GET",
+              "uri": "/products/VqKb4tyj9V6i"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "[Products] - By Id",
+            "x-testDescription": ""
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/packages": {
+      "get": {
+        "description": "",
+        "summary": "[Packages] - List Euros",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "PackagesGet2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "currencyCode",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "GET",
+              "uri": "/packages?currencyCode=eur"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "[Packages] - List Euros",
+            "x-testDescription": ""
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "post": {
+        "description": "",
+        "summary": "[Packages] - Create",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "PackagesPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "currencyCode",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/[packages]  createrequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "POST",
+              "uri": "/packages?currencyCode=eur",
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "body": "{\n\t\"name\": \"Test Package\",\n\t\"description\": \"Test Package Description\",\n\t\"productIds\": [\n\t\t\"VqKb4tyj9V6i\"\n\t]\n}"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "[Packages] - Create",
+            "x-testDescription": ""
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/packages/1": {
+      "get": {
+        "description": "",
+        "summary": "[Packages] - By Id Euros",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Packages1Get2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "currencyCode",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "GET",
+              "uri": "/packages/1?currencyCode=eur"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "[Packages] - By Id Euros",
+            "x-testDescription": ""
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "delete": {
+        "description": "",
+        "summary": "[Packages] - Delete",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Packages1Delete",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "DELETE",
+              "uri": "/packages/1"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "[Packages] - Delete",
+            "x-testDescription": ""
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/packages/2": {
+      "put": {
+        "description": "",
+        "summary": "[Packages] - Update",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Packages2Put",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/[packages]  updaterequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "PUT",
+              "uri": "/packages/2",
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "body": "{\n\t\"name\": \"Test Package - Update\",\n\t\"description\": \"Test Package Description\",\n\t\"productIds\": [\n\t\t\"VqKb4tyj9V6i\"\n\t]\n}"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "[Packages] - Update",
+            "x-testDescription": ""
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    }
+  },
+  "definitions": {
+    "[packages]  createrequest": {
+      "title": "[Packages] - CreateRequest",
+      "example": {
+        "name": "Test Package",
+        "description": "Test Package Description",
+        "productIds": [
+          "VqKb4tyj9V6i"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "",
+          "example": "Test Package",
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "example": "Test Package Description",
+          "type": "string"
+        },
+        "productIds": {
+          "description": "",
+          "example": [
+            "VqKb4tyj9V6i"
+          ],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "productIds"
+      ]
+    },
+    "[packages]  updaterequest": {
+      "title": "[Packages] - UpdateRequest",
+      "example": {
+        "name": "Test Package - Update",
+        "description": "Test Package Description",
+        "productIds": [
+          "VqKb4tyj9V6i"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "",
+          "example": "Test Package - Update",
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "example": "Test Package Description",
+          "type": "string"
+        },
+        "productIds": {
+          "description": "",
+          "example": [
+            "VqKb4tyj9V6i"
+          ],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "productIds"
+      ]
+    }
+  }
+}

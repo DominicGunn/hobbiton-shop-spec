@@ -1,0 +1,11 @@
+{
+  "generator-openapi-repo": {
+    "importExistingSpec": true,
+    "importedSpec": "C:\\Users\\Dominic\\Downloads\\converted.json",
+    "name": "Hobbiton Shop",
+    "repo": "DominicGunn/hobbiton-shop-spec",
+    "splitSpec": false,
+    "samples": true,
+    "installSwaggerUI": true
+  }
+}
