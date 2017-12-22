@@ -1,0 +1,220 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Hobbiton - Shop Microservice
+  description: The Hobbiton Shop Microservice used to create and serve packages containing a variety off different products.
+  license:
+    name: MIT
+    url: 'http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT'
+host: '192.168.99.100:5000'
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /products:
+    get:
+      summary: Lists products available to the shop microservice.
+      tags:
+        - Product API
+      produces:
+        - application/json
+      parameters:
+        - name: currencyCode
+          in: query
+          required: false
+          type: string
+          description: 'Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately.'
+      responses:
+        '200':
+          description: Successful Request
+  '/products/{productId}':
+    get:
+      summary: Product by API
+      tags:
+        - Product API
+      produces:
+        - application/json
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          type: string
+        - name: currencyCode
+          in: query
+          required: false
+          type: string
+          description: 'Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately.'
+      responses:
+        '200':
+          description: Successful Request
+        '404':
+          description: Product was not found.
+  /packages:
+    get:
+      summary: Lists packages within the Hobbiton Shop Microservice.
+      tags:
+        - Package API
+      produces:
+        - application/json
+      parameters:
+        - name: currencyCode
+          in: query
+          required: false
+          type: string
+          description: 'Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately.'
+      responses:
+        '200':
+          description: Successful Request
+    post:
+      summary: Creates a package within the Hobbiton Shop
+      tags:
+        - Package API
+      produces:
+        - application/json
+      parameters:
+        - name: Body
+          in: body
+          required: true
+          description: 'Body of the package being created. Must contain a name, description, and the ids of products within it.'
+          schema:
+            $ref: '#/definitions/[packages]  createrequest'
+        - name: currencyCode
+          in: query
+          required: false
+          type: string
+          description: 'Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately.'
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful Request
+  '/packages/{packageId}':
+    get:
+      summary: Package by API
+      tags:
+        - Package API
+      produces:
+        - application/json
+      parameters:
+        - name: packageId
+          in: path
+          type: number
+          required: true
+        - name: currencyCode
+          in: query
+          required: true
+          type: string
+          description: ''
+      responses:
+        '200':
+          description: Successful Request
+    put:
+      summary: Updates a package within the Hobbiton Shop
+      tags:
+        - Package API
+      produces:
+        - application/json
+      parameters:
+        - name: packageId
+          in: path
+          type: number
+          required: true
+        - name: Body
+          in: body
+          required: true
+          description: 'Body of the package being created. Must contain a name, description, and the ids of products within it.'
+          schema:
+            $ref: '#/definitions/[packages]  updaterequest'
+        - name: currencyCode
+          in: query
+          required: false
+          type: string
+          description: 'Accepts valid ISO 4217 Currency Codes, and will convert the total package price appropriately.'
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful Request
+        '404':
+          description: Package not found.
+    delete:
+      summary: Delete Package by API
+      tags:
+        - Package API
+      produces:
+        - application/json
+      parameters:
+        - name: packageId
+          in: path
+          type: number
+          required: true
+      responses:
+        '200':
+          description: Successful Request
+        '404':
+          description: Package not found.
+definitions:
+  '[packages]  createrequest':
+    title: '[Packages] - CreateRequest'
+    example:
+      name: Test Package
+      description: Test Package Description
+      productIds:
+        - VqKb4tyj9V6i
+    type: object
+    properties:
+      name:
+        description: ''
+        example: Test Package
+        type: string
+      description:
+        description: ''
+        example: Test Package Description
+        type: string
+      productIds:
+        description: ''
+        example:
+          - VqKb4tyj9V6i
+        type: array
+        items:
+          type: string
+    required:
+      - name
+      - description
+      - productIds
+  '[packages]  updaterequest':
+    title: '[Packages] - UpdateRequest'
+    example:
+      name: Test Package - Update
+      description: Test Package Description
+      productIds:
+        - VqKb4tyj9V6i
+    type: object
+    properties:
+      name:
+        description: ''
+        example: Test Package - Update
+        type: string
+      description:
+        description: ''
+        example: Test Package Description
+        type: string
+      productIds:
+        description: ''
+        example:
+          - VqKb4tyj9V6i
+        type: array
+        items:
+          type: string
+    required:
+      - name
+      - description
+      - productIds
